@@ -1,0 +1,1605 @@
+/*
+Theme Name: Urbicand
+Version: 2.0
+Description: Reprend les styles de pages basiques de wordpress + ajouts maison
+Author: Margot Nadot
+Author URI: https://margotnadot.com/
+*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+
+	0. 	
+	1. 	
+	2. 	
+	3. 	
+	4. 	
+	5. 	
+
+ELEMENTS
+LAYOUT
+INVARIANTS
+CUSTOM CLASS ON WP BLOCKS
+MODIFICATION DES REGLAGES WP
+FORN
+
+----------------------------------------------------------------------------- */
+
+/*
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+ELEMENTS
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+Reset minimaliste, uniquement sur les éléments nécessaires,
+Afin de conserver les atouts du CSS basique.
+*/
+
+html {
+	background: #ffffff;
+	line-height: 1.15;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+  
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	font-family: sans-serif;
+	font-weight: 300;
+	color: #1f425a;
+}
+
+@media (min-width: 42em) {
+	body {
+		font-size: 0.875em;
+	}
+}
+
+/*
+--------------------------------------
+P, LI, STRONG etc.
+--------------------------------------
+*/
+
+p {
+	margin-top: 1em;
+	margin-bottom: 1em;
+  }
+  
+  p, li {
+	line-height: 1.5em;
+  }
+  
+  strong {
+	font-weight: bold;
+	letter-spacing: 0.05em;
+  }
+
+
+
+/*
+--------------------------------------
+H
+--------------------------------------
+*/
+
+h1, h2, h3 {
+	font-family: 'Vollkorn', serif;
+}
+
+h2 {
+    font-size: 2.25em;
+	color: #1e1e1c;
+}
+
+h3 {
+    font-size: 1.75em;
+}
+
+/*
+--------------------------------------
+A & BUTTON
+--------------------------------------
+*/
+
+a {
+	color: inherit;
+}
+
+a:hover,
+a:focus {
+	text-decoration: none;
+}
+
+a:active {
+
+	text-decoration: none;
+}
+
+button {
+	border: none;
+}
+
+/* -----------------------------
+[href="#"]
+*/
+
+[href="#"] {
+	pointer-events: none;
+}
+
+/*
+--------------------------------------
+UL & OL
+--------------------------------------
+*/
+
+
+
+/*
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+LAYOUT
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+Le layout des pages s'appuie sur la librairie de blocs Wordpress
+- site-wrap
+- desktop/mobile only
+- sections + wp-block-group
+*/
+
+/*
+--------------------------------------
+SITE-WRAP
+--------------------------------------
+Afin d'éviter les scroll horizontaux sur les pages.
+*/
+
+.site-wrap {
+	border: solid #fbb900 0.625em;
+}
+
+/*
+--------------------------------------
+DESKTOP/MOBILE ONLY
+--------------------------------------
+Pour ajuster la présence d'éléments à la taille de la page
+*/
+
+@media (max-width: 42em) {
+	.desktop-only { display: none; }
+}
+
+@media (min-width: 42em) {
+	.mobile-only { display: none; }
+}
+
+
+/*
+--------------------------------------
+SECTIONS
+--------------------------------------
+*/
+
+.section > .wp-block-group__inner-container {
+	margin-left: auto; margin-right: auto;
+	position: relative;
+}
+
+@media (min-width: 62em) { .section > .wp-block-group__inner-container { max-width: 62em; } }
+@media (max-width: 62em) {
+	.section > .wp-block-group__inner-container >  .wp-block-group,
+	.section > .wp-block-group__inner-container >  .wp-block-columns {
+		margin-left: 2em;
+		margin-right: 2em;
+	}
+}
+
+@media (min-width: 42em) {
+	.section.small > .wp-block-group__inner-container { max-width: 42em;} 
+	.section.small > .wp-block-group__inner-container >  .wp-block-group,
+	.section.small > .wp-block-group__inner-container >  .wp-block-columns {
+		margin-left: auto; margin-right: auto;
+	}
+}
+@media (max-width: 42em) { 
+	.section.small > .wp-block-group__inner-container { max-width: 100%; }
+	.section.small > .wp-block-group__inner-container >  .wp-block-group,
+	.section.small > .wp-block-group__inner-container >  .wp-block-columns {
+		margin-left: 2em;
+		margin-right: 2em;
+	}
+}
+
+@media (min-width: 75em) {
+	.section.large > .wp-block-group__inner-container { max-width: 75em; }
+	.section.large > .wp-block-group__inner-container >  .wp-block-group,
+	.section.large > .wp-block-group__inner-container >  .wp-block-columns {
+		margin-left: auto; margin-right: auto;
+	}
+}
+@media (max-width: 75em) { 
+	.section.large > .wp-block-group__inner-container { max-width: 100%; }
+	.section.large > .wp-block-group__inner-container >  .wp-block-group,
+	.section.large > .wp-block-group__inner-container >  .wp-block-columns {
+		margin-left: 2em;
+		margin-right: 2em;
+	}
+}
+
+
+
+/*
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+INVARIANTS
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+- main-nav : burger menu
+- footer-site
+*/
+  
+/*
+-----------------------------
+MAIN NAV
+*/
+  
+.main-nav-wrap {
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 50;
+	position: relative;
+  }
+  
+.main-nav__logo {
+	display: block;
+	background-color: transparent !important;
+	padding: 0;
+	margin: 1em;
+}
+
+.main-nav__logo_desktop {
+	width: 10.95em;
+	height: 2.5em;
+}
+
+.main-nav__logo_mobile {
+	width: 8.32em;
+	height: 1.9em;
+}
+  
+.main-nav__logo > span {
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	text-indent: -1000px;
+	background-image: url('images/logo_petit.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition: all 0.2s;
+	background-size: 100% 100%;
+}
+  
+.main-menu,
+.main-tools-menu {
+	margin: 0;
+	padding-left: 0;
+	list-style: none;
+}
+
+.main-menu__link {
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 1em;
+	transform-origin: center;
+	letter-spacing: 0.1em;
+}
+
+.main-menu__sub {
+	list-style: none;
+	padding-left: 0;
+	margin: 0;
+}
+
+@media (min-width: 42em) {
+
+	.menu-principal-container {
+		margin: 1em;
+	}
+
+	.main-menu > li:first-child {
+		margin-left: 0;
+	}
+
+	.main-menu > li:last-child {
+		margin-right: 0;
+	}
+
+}
+
+
+@media (min-width: 42em) {
+
+	.main-nav__logo {
+		position: relative;
+	}
+
+	.main-nav__logo_mobile {
+		display: none;
+	}
+
+	#main-nav__toggler,
+	#main-nav__hamburger {
+		display: none;
+	}
+
+	.main-nav__container {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		margin: 0;
+		padding: 1px 0;
+	}
+
+	.main-menu {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		padding: 0.5em;
+	}
+
+	.main-menu__item {
+		margin: 0 1em;
+	}
+
+	.main-menu__link {
+		padding: 0;
+		text-align: center;
+		background-color: transparent !important;
+	}
+
+	.main-menu__link {
+		color: #1e1e1c;
+	}
+
+	.main-menu__link:hover,
+	.main-menu__link:focus {
+		text-decoration: underline;
+	}
+
+	.main-menu__link:active {
+		text-decoration: underline;
+	}
+
+}
+
+@media (max-width: 42em) {
+
+	.main-nav-wrap {
+		position: fixed;
+	}
+
+	.main-menu,
+	.main-tools-menu {
+		padding: 1px 0;
+	}
+
+	.main-menu__item,
+	.main-tools-menu__item {
+		margin: 1em 0;
+	}
+
+	.main-menu__link {
+		color: #ffffff !important;
+		background-color: transparent !important;
+		padding: 0 !important;
+		padding: 0.5em;
+		font-size: 1em;
+		text-align: center;
+	}
+
+	.main-menu__link:hover,
+	.main-menu__link:focus,
+	.main-menu__link:active {
+		text-decoration: underline;
+	}
+
+	/* --- Menu Brad Traversy --- */
+
+	#main-nav__toggler {
+		position: absolute;
+		right: 0.125em;
+		top: 0.125em;
+		z-index: 2;
+		cursor: pointer;
+		width: 50px;
+		height: 50px;
+		box-sizing: border-box;
+		opacity: 0;
+		margin: 10px;
+	}
+
+	#main-nav__hamburger {
+		position: absolute;
+		top: calc(8em - 1em);
+		right: 0.125em;
+		top: 0.125em;
+		z-index: 1;
+		width: 50px;
+		height: 50px;
+		box-sizing: border-box;
+		padding: 15px;
+		margin: 5px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		background-color: #e75e19;
+		}
+
+	/* Hamburger Line */
+	#main-nav__hamburger__line {
+		position: relative;
+		flex: none;
+		width: 100%;
+		height: 2px;
+		background: #ffffff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.4s ease;
+	}
+
+	/* Hamburger Lines - Top & Bottom */
+	#main-nav__hamburger__line::before,
+	#main-nav__hamburger__line::after {
+		content: '';
+		position: absolute;
+		z-index: 1;
+		top: -10px;
+		width: 100%;
+		height: 2px;
+		background: inherit;
+	}
+
+	/* Moves Line Down */
+	#main-nav__hamburger__line::after {
+		top: 10px;
+	}
+
+	/* Toggler Animation */
+	#main-nav__toggler:checked + #main-nav__hamburger > #main-nav__hamburger__line {
+		transform: rotate(135deg);
+	}
+
+	/* Turns Lines Into X */
+	#main-nav__toggler:checked + #main-nav__hamburger > #main-nav__hamburger__line:before,
+	#main-nav__toggler:checked + #main-nav__hamburger > #main-nav__hamburger__line:after {
+		top: 0;
+		transform: rotate(90deg);
+	}
+
+	/* Rotate On Hover When Checked */
+	#main-nav__toggler:checked:hover + #main-nav__hamburger > #main-nav__hamburger__line {
+		transform: rotate(225deg);
+	}
+
+	/* Show Menu */
+	#main-nav__toggler:checked ~ #main-nav__splash {
+		visibility: visible;
+	}
+
+	#main-nav__toggler:checked ~ #main-nav__splash > #main-nav__splash_1 {
+		transform: scale(1);
+		transition-duration: 0.75s;
+	}
+
+	#main-nav__toggler:checked ~ #main-nav__splash > #main-nav__splash_1 > #main-nav__splash_2 {
+		opacity: 1;
+		transition:  opacity 0.4s ease 0.4s;
+	}
+
+	#main-nav__splash {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		visibility: hidden;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#main-nav__splash_1 {
+		background-color: #e75e19;
+		border-radius: 50%;
+		width: 200vw;
+		height: 200vw;
+		padding: 1em;
+		display: flex;
+		flex: none;
+		align-items: center;
+		justify-content: center;
+		transform: scale(0);
+		transition: all 0.4s ease;
+	}
+		
+	#main-nav__splash_2 {
+		text-align: center;
+		max-width: 90vw;
+		max-height: 100vh;
+		opacity: 0;
+		transition: opacity 0.4s ease;
+	}
+
+	.main-nav__logo_desktop {
+		display: none;
+	}
+
+	/* --- sous menu --- */
+
+	.main-menu__sub {
+		padding-top: 1px;
+		padding-bottom: 1px;
+	}
+
+	.main-menu__sub > .main-menu__item {
+		margin: 0;
+	}
+
+	.main-menu__sub > .main-menu__item > .main-menu__link {
+		text-transform: initial;
+		font-size: 0.875em;
+	}
+}
+
+/*
+--------------------------------------
+Footer
+--------------------------------------
+*/
+
+/*
+--------------------------------------
+Layout
+*/
+
+#widget-footer-area,
+#menu-footer {
+	display: flex;
+	justify-content: center;
+}
+
+#widget-footer-area {
+	background-color: #fbb900;
+	color: #000000;
+}
+
+.widget-credit {
+	margin: 0;
+}
+
+#menu-footer {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+@media (min-width: 42em) {
+	.widget-credit:after,
+	#menu-footer > li:not(:last-child):after {
+		content: "-";
+		margin: 0 1em;
+	}
+}
+@media (max-width: 42em) {
+	#widget-footer-area,
+	#menu-footer {
+		flex-direction: column;
+	}
+}
+
+/*
+--------------------------------------
+Identite
+*/
+
+.footer-identite {
+	padding: 1.5em 2em;
+}
+
+@media (min-width: 42em) {
+	.footer-identite {
+		margin-top: -2em;
+		margin-bottom: 2em;
+	}
+}
+
+@media (max-width: 42em) {
+	.footer-identite {
+		margin-top: 0.625em;
+	}
+}
+
+/*
+--------------------------------------
+Menu
+*/
+
+#menu-toutes-les-pages {
+	list-style: none;
+}
+
+@media (min-width: 42em) {
+	#menu-toutes-les-pages {
+		margin-top: 6em;
+		margin-bottom: 4em;
+	}
+}
+
+@media (max-width: 42em) {
+	#menu-toutes-les-pages {
+		margin-top: 2em;
+		margin-bottom: 2em;
+	}
+}
+
+#menu-toutes-les-pages > li > a {
+	font-weight: bold;
+	text-decoration: none;
+	letter-spacing: 0.1em;
+}
+
+#menu-toutes-les-pages > li > a:focus,
+#menu-toutes-les-pages > li > a:hover {
+	text-decoration: underline;
+}
+
+.menu-item-160,
+.menu-item-161,
+.menu-item-177 {
+	margin-bottom: 1em;
+}
+
+
+/*
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+CUSTOM CLASS ON WP BLOCKS
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+Enrichir la mise en page des blocs Wordpress 
+en fonction de la charte graphique,
+de manière automatique.
+- cover
+- intro page
+- highlighted link
+- button
+*/
+
+
+/*
+--------------------------------------
+Cover
+--------------------------------------
+*/
+
+.section.cover > .wp-block-group__inner-container > .wp-block-image > img {	width: 100%; }
+
+@media (min-width: 42em) {
+
+	.section.cover > .wp-block-group__inner-container > .wp-block-image {
+		width: 100vw;
+		position: absolute;
+		z-index: -1;
+		left: 0;
+		top: 0;
+		height: 100%;
+		margin: 0;
+		overflow: hidden;
+	}	
+
+	.section.cover > .wp-block-group__inner-container > .wp-block-group {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: calc(100% - 2em);
+		padding: 2em;
+	}
+
+	.section.cover > .wp-block-group__inner-container > .rule-height {
+		position: relative !important;
+	}
+
+}
+
+@media (min-width: 62em) {
+	.section.cover > .wp-block-group__inner-container > .wp-block-image { margin-left: calc((-100vw + 62em) /2); }
+}
+
+@media (min-width: 42em) {
+	.section.cover.small > .wp-block-group__inner-container > .wp-block-image { margin-left: calc((-100vw + 42em) /2); }
+}
+
+@media (min-width: 82em) {
+	.section.cover.large > .wp-block-group__inner-container > .wp-block-image { margin-left: calc((-100vw + 75em) /2); }
+}
+
+
+
+/*
+--------------------------------------
+Deco
+--------------------------------------
+*/
+
+.deco {
+	margin: 0;
+}
+
+@media (min-width: 67em) {
+	.deco {
+		display: block;
+		position: absolute;
+		width: calc((100vw - 62em) / 2);
+	}
+}
+
+@media (max-width: 67em) { .deco { display: none; } }
+
+@media (min-width: 57em) {
+	.section.small .deco  {
+		display: block;
+		position: absolute;
+		width: calc((100vw - 42em) / 2);
+	}
+}
+@media (max-width: 57em) { .section.small .deco { display: none; } }
+
+@media (min-width: 90em) {
+	.section.large .deco  {
+		display: block;
+		position: absolute;
+		width: calc((100vw - 75em) / 2);
+	}
+}
+@media (max-width: 90em) { .section.large .deco { display: none; } }
+
+
+.deco.top { top: 0; }
+.deco.left { right: 100%; }
+.deco.bottom { bottom: 0; }
+.deco.right { left: 100%; }
+
+
+
+/*
+--------------------------------------
+Intro Page
+--------------------------------------
+*/
+
+.intro-page {
+	font-size: 2em;
+	line-height: 1.15em;
+	font-weight: bold;
+}
+
+.intro-page__line {
+	display: inline-block;
+	padding: 0.25em 0.5em;
+}
+
+@media (max-width: 42em) {
+	.intro-page {
+		margin-top: -6rem;
+	}
+}
+
+/*
+--------------------------------------
+Highlighted link
+--------------------------------------
+*/
+
+.highlighted-link {
+	font-weight: bold;
+	line-height: 1em;
+	text-decoration: none;
+	display: inline-block;
+	position: relative;
+	padding: 0 0.25em;
+	z-index: 1;
+}
+
+.highlighted-link::before {
+	content: "";
+	position: absolute;
+	bottom: -0.125em;
+	left: 0;
+	width: 100%;
+	height: 0.5em;
+	background-color: #00eec6;
+	z-index: -1;
+	transition: all ease-in-out 0.3s;
+	border-radius: 0;
+}
+
+.highlighted-link:hover::before {
+	height: 2em;
+	bottom: -0.5em;
+	left: -0.5em;
+	width: calc(100% + 1em);
+	border-radius: 0.3em;
+}
+
+
+/*
+--------------------------------------
+Button
+--------------------------------------
+*/
+
+.wp-block-buttons {
+	position: relative;
+	z-index: 1;
+}
+
+.background.wp-block-button { background-color: transparent !important;}
+
+.button,
+.wp-block-button__link {
+	position: relative;
+	display: inline-block;
+	font-size: 1em;
+	line-height: 1.25em;
+	padding: 0.5em 1.5em;
+	border-radius: 0.4em;
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+	background-color: transparent !important;
+	overflow: hidden;
+	border: 1px solid #fff;
+	letter-spacing: 0.1em;
+}
+
+.button:before,
+.wp-block-button__link:before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: #e75e19;
+	z-index: -1;
+}
+
+p > .button, p > * > .button {
+	top: 1.125em;
+	margin: 0 0.5em;
+}
+
+
+.button,
+.wp-block-button__link { color: #ffffff; }
+.background.mint > .wp-block-button__link { color: #000000; }
+
+.button.background.mint:before { background-color: #00eec6;}
+
+.button:hover,
+.button:focus,
+.wp-block-button__link:hover,
+.wp-block-button__link:focus {
+	background-color: rgba(255,255,255,0.2) !important;
+}
+
+.button:active,
+.wp-block-button__link:active {
+	background-color: rgba(255,255,255,0.4) !important;
+}
+
+/*
+--------------------------------------
+Button Discrete
+*/
+
+.wp-block-button.discrete > .wp-block-button__link {
+	color: #e75e19;
+	border: none;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.wp-block-button.discrete > .wp-block-button__link:focus,
+.wp-block-button.discrete > .wp-block-button__link:hover { text-decoration: underline; }
+.wp-block-button.discrete > .wp-block-button__link { color: #dc400e; }
+
+.wp-block-button.discrete > .wp-block-button__link:before { display: none; }
+
+.wp-block-button.discrete.avec-fleche > .wp-block-button__link {
+	padding-left: 1.75em;
+}
+
+.wp-block-button.discrete.avec-fleche > .wp-block-button__link:before {
+	display: block;
+	width: 1.25em;
+	height: 1.25em;
+	background-color: transparent !important;
+	background-image: url('images/icon_arrow-left_orange.png');
+	background-size: 100%;
+    top: 0.4em;
+	z-index: initial;
+}
+
+/*
+--------------------------------------
+Galerie logos
+--------------------------------------
+*/
+
+.galerie-logos {
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+@media (min-width: 42em) {
+	.galerie-logos > figure {
+		width: 12% !important;
+		margin: 3% !important;
+	}
+}
+
+@media (max-width: 42em) {
+	.galerie-logos > figure {
+		width: 40% !important;
+		max-width: 40% !important;
+		margin: 4% !important;
+	}
+}
+
+/*
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+ELEMENTS UNIQUES
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+*/
+
+/*
+--------------------------------------
+Timeline step
+--------------------------------------
+Sur la page d'accueil
+La frise qui présente tout ce qu'urbicand peut faire pour ses clients
+*/
+
+
+.timeline-step {
+	text-align: center;
+}
+
+@media (min-width: 62em) {
+	.timeline-step { font-size: 1em; }
+}
+
+@media (min-width: 780px) and (max-width: 62em) {
+	.timeline-step { font-size: 0.75em; }
+}
+
+@media (min-width: 780px) {
+
+	.timeline-step {
+		background-image: url('images/timeline-step_arrow.svg');
+		background-position: center center;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		margin-left: -5%;
+		margin-right: -2%;
+	}
+
+	.timeline-step > .wp-block-group__inner-container {
+		padding-right: 18%;
+		padding-left: 8%;
+	}
+	
+	.timeline-step > .wp-block-group__inner-container {
+		padding-right: 18%;
+		padding-left: 8%;
+	}
+
+	.timeline-step .wp-block-columns:nth-child(odd) { margin-left: -8%; margin-bottom: 6em; }
+	.timeline-step .wp-block-columns:nth-child(even) { margin-right: -8%; }
+}
+
+@media (max-width: 779px) {
+	.timeline-step > .wp-block-group__inner-container {
+		display: flex;
+	}
+
+	.timeline-step .wp-block-columns:nth-child(odd) { margin-right: 2em; }
+}
+
+.timeline-step .wp-block-column {
+	display: flex;
+	position: relative;
+}
+
+.timeline-step .wp-block-column { flex-direction: column; }
+
+@media (min-width: 780px) {
+	.timeline-step .wp-block-column:nth-child(odd) { flex-direction: column-reverse; }
+
+
+	.timeline-step .wp-block-column::before {
+		content: "";
+		display: block;
+		position: absolute;
+		height: 120%;
+		border-left: #fbb900 solid 2px;
+		left: 50%;
+		z-index: -1;
+	}
+
+	.timeline-step  .wp-block-columns:nth-child(1) .wp-block-column:before { top: 0; }
+	.timeline-step  .wp-block-columns:nth-child(2) .wp-block-column:before { bottom: 0; }
+}
+
+.timeline-step figure {
+	margin-top: 0;
+	margin-bottom: 0;
+	max-width: 20em;
+}
+
+.timeline-step p {
+	line-height: 1.25em;
+	margin-top: 0;
+	margin-bottom: 0;
+	background-color: #fff;
+	padding: 1em 0.5em;
+}
+
+@media (max-width: 779px) { .timeline-step p { min-height: 5em; } }
+
+/*
+--------------------------------------
+Photo groupe
+--------------------------------------
+*/
+
+
+@media (min-width: 600px) {
+	.photo-groupe {
+		position: relative;
+		margin: 2em 0;
+	}
+	
+	.photo-groupe .list-tag,
+	.photo-groupe .wp-block-image {
+		margin: 0;
+	}
+
+	.photo-groupe .list-tag > li {
+		position: absolute;
+		font-size: 1.25em;
+	}
+}
+
+@media (max-width: 599px) { .photo-groupe .list-tag > li { font-size: 1em; } }
+
+.photo-groupe .list-tag > li:nth-child(1) { top: 7%; right: 0; } /* Architectes */
+.photo-groupe .list-tag > li:nth-child(2) { bottom: 10%; left: 7%; } /* Urbanistes */
+.photo-groupe .list-tag > li:nth-child(3) { bottom: 40%; right: -6%; } /* Paysagistes */
+.photo-groupe .list-tag > li:nth-child(4) { top: 30%; left: -5%; } /* Géomaticien·nes */
+.photo-groupe .list-tag > li:nth-child(5) { top: 95%; right: 50%; } /* Géographes */
+.photo-groupe .list-tag > li:nth-child(6) { top: -2%; left: 15%; } /* chef·fes de projet */
+.photo-groupe .list-tag > li:nth-child(7) { top: 75%; right: 10%; } /* Ajout 1 */
+.photo-groupe .list-tag > li:nth-child(8) { top: 10%; left: 1%; } /* Ajout 2 */
+.photo-groupe .list-tag > li:nth-child(9) { top: 50%; left: -2%; } /* Ajout 3 */
+.photo-groupe .list-tag > li:nth-child(10) { top: 25%; right: -3%; } /* Ajout 4 */
+.photo-groupe .list-tag > li:nth-child(11) { top: 88%; right: 20%; } /* Ajout 5 */
+.photo-groupe .list-tag > li:nth-child(12) { top: -5%; left: 65%; } /* Ajout 6 */
+
+/*
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+MODIFICATION DES REGLAGES WP
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+*/
+
+.background.dis_inline-block { padding: 0 0.25em 0.125em; }
+
+.has-white-color {color: #ffffff; }
+.has-medium-font-size { font-size: 1.25em !important; }
+.has-large-font-size { font-size: 2em !important; }
+
+strong { display: inline-block; position: relative; margin-left: 0.125em; margin-right: 0.125em; }
+strong:before {
+	content: "";
+    display: block;
+    position: absolute;
+	z-index: -1;
+    bottom: 0;
+	left: 0;
+	height: 0.5em;
+    width: calc(100% + 0.25em);
+	margin-left: -0.125em;
+    margin-right: -0.125em;
+    background-color: #feeab3;
+    
+    
+}
+
+.wp-container-3 {
+	display: flex;
+	gap: 0.5em;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+/*
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+FORM
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+*/
+
+form {
+    margin: 1em 0;
+}
+
+.form-line_cluster {
+	margin-left: -1em;
+	margin-right: -1em;
+}
+
+.form-line_cluster > * {
+	flex-grow: 1;
+}
+
+@media (min-width: 42em) {
+	.form-line_cluster {
+		display: flex;
+	}
+}
+
+/*
+--------------------------------------
+Form line
+--------------------------------------
+*/
+
+.form-line {
+    margin: 1.5em 0;
+    display: flex;
+    flex-direction: column;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+.form-line.inline {
+    flex-direction: row;
+}
+
+.form-line > * {
+    margin-bottom: 0.5em;
+}
+
+/*
+--------------------------------------
+Label
+--------------------------------------
+*/
+
+label {
+    font-weight: 700;
+    color: #000000;
+}
+
+
+/* .label-right { margin-left: 0.5em; } */
+
+/*
+--------------------------------------
+Form detail
+--------------------------------------
+*/
+
+.form-detail {
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-size: 0.875em;
+    color: #005748;
+}
+
+ul.form-detail {
+    margin: 0;
+}
+
+.form-detail > li {
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+/*
+--------------------------------------
+Compact
+--------------------------------------
+Quand les form details ne sont pas utilisés,
+pour réduire l'espacement entre les lignes
+*/
+
+.form-line.compact {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+/*
+--------------------------------------
+List tag
+--------------------------------------
+*/
+
+.list-tag {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-left: -0.75em;
+	margin-right: -0.75em;
+}
+
+.list-tag > li {
+    padding: 0.25em 0.75em 0.125em;
+    border: solid 1px #fbb900;
+	background-color: #ffffff;
+    border-radius: 1em;
+    margin: 0.25em;
+    font-weight: bold;
+}
+
+/*
+--------------------------------------
+Input
+--------------------------------------
+*/
+
+input,
+textarea {
+    font-family: sans-serif;
+    font-size: 1.125em;
+    padding: 0.5em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+textarea {
+    border: none;
+    border-bottom: 3px #00ad91 solid;
+    border-radius: 0.25em 0.25em 0 0;
+}
+
+input::placeholder {
+    font-style: italic;
+}
+
+.readonly > input {
+    color: #007a66;
+    pointer-events: none;
+}
+
+.input-wrap {
+    position: relative;
+}
+
+input[type="submit"].button {
+	background-color: #7e02ea !important;
+	border: none;
+	width: auto;
+}
+
+/*
+--------------------------------------
+Input icon
+--------------------------------------
+*/
+
+.input-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.5em !important;
+    height: 2.5em !important;
+    background-image: url("img/icon_sprite.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.input-icon.lock { background-position: 0 0; }
+.input-icon.eye { background-position: 0 -2.5em; }
+.input-button.eye.is-active { background-position: 0 -5em; }
+
+/*
+--------------------------------------
+Input button
+--------------------------------------
+*/
+
+.input-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-size: 1rem;
+    text-indent: -99999px;
+    padding: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.input-button { opacity: 50%; }
+.input-button:hover,
+.input-button:focus { opacity: 75%; }
+.input-button.eye:active { opacity: 100%; }
+
+/*
+--------------------------------------
+Checklist
+--------------------------------------
+*/
+
+.checklist {
+    list-style: none;
+    padding-left: 0;
+}
+
+.checklist > dt {
+    margin-bottom: 0.25em;
+}
+
+.checklist > dd {
+    margin-left: 0;
+    margin-left: 2em;
+    position: relative;
+}
+
+.checklist > dd:before {
+    content:"";
+    position: absolute;
+    font-size: 0.875em;
+    width: 1em;
+    height: 1em;
+    background-image: url("img/icon_sprite.png");
+    background-size: 3em 10em;
+    top: 0.125em;
+    right: 100%;
+    margin-right: 0.5em;
+}
+
+.checklist > .is-checked { color: #009980; text-decoration: line-through; }
+.checklist > .is-pending { color: #888888; }
+.checklist > .is-missing { color: #d3355e; }
+
+.checklist > .is-checked:before { background-position: -2em -9em; }
+.checklist > .is-pending:before { background-position: -1em -9em; }
+.checklist > .is-missing:before { background-position: 0 -9em; }
+
+/*
+--------------------------------------
+hr
+--------------------------------------
+*/
+
+.wp-block-separator {
+    width: 10em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+	background-color: #fbb900;
+    color: #fbb900;
+}
+
+/*
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+MIXINS
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+Inspirées de Vuetify pour certaines, mais à approfondir...
+- font custom
+- icons
+- border
+- padding
+- shadow
+- position
+- display
+- text-align
+*/
+
+/*
+--------------------------------------
+Font custom
+--------------------------------------
+*/
+
+.font-custom {
+	font-family: 'Vollkorn', serif;
+}
+
+/*
+--------------------------------------
+Text-align
+--------------------------------------
+*/
+
+.text-center { text-align: center; }
+
+
+/*
+--------------------------------------
+Line height
+--------------------------------------
+*/
+
+.line-height_4 { line-height: 1em; }
+.line-height_5 { line-height: 1.25em; }
+
+
+/*
+--------------------------------------
+Icons
+--------------------------------------
+*/
+
+.icon {
+	display: inline-block;
+	width: 1.5em;
+	height: 1.5em;
+	background-size: 100% 100%;
+	margin: -0.5em 0.125em -0.375em;
+}
+
+/*
+--------------------------------------
+Background
+--------------------------------------
+*/
+
+.background.blanc { background-color: #ffffff !important; }
+.background.transparent { background-color: transparent !important; }
+.background.decors.large { background: url("images/decors_04.png"); background-repeat: repeat-y; background-size: 100%; }
+
+/*
+--------------------------------------
+Border
+--------------------------------------
+*/
+
+.border_a {
+	border: solid 1px #fddc80;
+	border-radius: 0.3em;
+}
+
+.border_l {
+	border-left: solid 1px #fddc80;
+}
+
+.border_r { border-radius: 0.3em; }
+
+/*
+--------------------------------------
+Padding
+--------------------------------------
+*/
+
+.pa8 { padding: 2em; }
+
+.px4 { padding-left: 1em; padding-right: 1em; }
+.px8 { padding-left: 2em; padding-right: 2em; }
+
+.py4 { padding-top: 1em; padding-bottom: 1em; }
+.py6 { padding-top: 1.5em; padding-bottom: 1.5em; }
+.py8 { padding-top: 2em; padding-bottom: 2em; }
+
+.pt6 { padding-top: 1.5em; }
+
+.pl2 { padding-left: 0.5em; }
+
+.pr8 { padding-right: 2em; }
+
+/*
+--------------------------------------
+Margin
+--------------------------------------
+*/
+
+.mx-8 { margin-left: -2em; margin-right: -2em; }
+
+.my0 { margin-top: 0; margin-bottom: 0; }
+
+.mt0 { margin-top: 0; }
+.mt6 { margin-top: 1.5em; }
+.mt8 { margin-top: 2em; }
+.mt-4 { margin-top: -1em; }
+.mt-8 { margin-top: -2em; }
+
+.mb0 { margin-bottom: 0; }
+.mb2 { margin-bottom: 0.5em; }
+.mb4 { margin-bottom: 1em; }
+.mb8 { margin-bottom: 2em; }
+.mb-8 { margin-bottom: -2em; }
+
+
+/*
+--------------------------------------
+Shadow
+--------------------------------------
+*/
+
+.shadow_gradient:after {
+	content: "";
+	position: absolute;
+	min-width: 8em;
+	min-height: 8em;
+	background: linear-gradient(rgba(0,0,0,1) 0%, rgba(0,0,0,0)) 100%;
+	transform-origin: center center;
+	opacity: 0.75;
+}
+
+.shadow_gradient.top:after { top: 0; left: 0; width: 100%; }
+.shadow_gradient.bottom:after { bottom: 0; left: 0; width: 100%; transform: rotate(180deg); }
+.shadow_gradient.background:after { z-index: -1; }
+
+.shadow_text { text-shadow: 0 0 20px rgb(0, 0, 0); }
+
+/*
+--------------------------------------
+Position
+--------------------------------------
+*/
+
+.pos_bottom { top: initial !important; bottom: 0; }
+
+/*
+--------------------------------------
+Display
+--------------------------------------
+*/
+
+.dis_inline-block { display: inline-block !important; }
+.dis_initial { display: initial !important; }
+
+
+
+/*
+--------------------------------------
+v-align
+--------------------------------------
+*/
+
+.v-align_center {
+	height: 100%;
+}
+
+.v-align_center > .wp-block-group__inner-container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
